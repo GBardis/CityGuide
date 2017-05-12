@@ -52,21 +52,25 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private void gotoathens() {
         Intent intent = new Intent(this, AthensActivity.class);
         startActivity(intent);
+        Toast.makeText(this, "Welcome To Athens", Toast.LENGTH_LONG).show();
     }
 
     private void gotothessaloniki() {
         Intent intent = new Intent(this, ThessalonikiActivity.class);
         startActivity(intent);
+        Toast.makeText(this, "Welcome To Thessaloniki", Toast.LENGTH_LONG).show();
     }
 
     private void gotogiannena() {
         Intent intent = new Intent(this, GiannenaActivity.class);
         startActivity(intent);
+        Toast.makeText(this, "Welcome To Giannena", Toast.LENGTH_LONG).show();
     }
 
     private void gotonauplio() {
         Intent intent = new Intent(this, NauplioActivity.class);
         startActivity(intent);
+        Toast.makeText(this, "Welcome To Nauplio", Toast.LENGTH_LONG).show();
     }
 
     static final double AthLat = 23.7275388;
@@ -107,12 +111,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             gotonauplio();
         else
             Toast.makeText(this, "EISTAI MAKRIA", Toast.LENGTH_LONG).show();
-       /* float distanceInMeters = results[0];
-        boolean isWithin10km = distanceInMeters < 10000;
-        if (isWithin10km == true)
-            gotoathens();
-        else if (isWithin10km == false)
-            Toast.makeText(this,"EISTAI MAKRIA",Toast.LENGTH_LONG).show();*/
     }
 
 
