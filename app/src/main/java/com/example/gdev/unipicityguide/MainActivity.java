@@ -1,20 +1,19 @@
 package com.example.gdev.unipicityguide;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -28,11 +27,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     static final double NauLat = 22.8015531;
     static final double NauLong = 37.5673173;
     Button button;
-    TextView textView;
     LocationManager locationManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
@@ -48,21 +47,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             AlertDialog alert = alertBuilder.create();
             alert.show();
         } else if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, MainActivity.this);
-
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, MainActivity.this);
         }
-        super.onCreate(savedInstanceState);
+        locationManager=(LocationManager)getSystemService(LOCATION_SERVICE);
         button = (Button) findViewById(R.id.button);
-        textView = (TextView) findViewById(R.id.textView);
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 givemeperm();
-                if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
+                if (ActivityCompat.checkSelfPermission(MainActivity.this,Manifest.permission.ACCESS_FINE_LOCATION)
                         == PackageManager.PERMISSION_GRANTED)
-                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                            0, 0, MainActivity.this);
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0,0,MainActivity.this);
             }
         });
 
@@ -94,18 +89,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                return;
-            }
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, MainActivity.this);
-
-        } else {
+        }else{
             Toast.makeText(MainActivity.this, "Permission denied to access your location", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     public void onLocationChanged(Location location) {

@@ -1,6 +1,4 @@
 <resources>
     <string name="app_name">UnipiCityGuide</string>
-    <string name="button">Find City</string>
-    <string name="push_the_button_to_find_the_nearest_city">Push the button to find the nearest city</string>
     <string name="welcome_unipicityguide">Welcome UnipiCityGuide</string>
 </resources>

@@ -24,7 +24,7 @@
         <activity android:name=".AthensActivity" />
         <activity android:name=".ThessalonikiActivity" />
         <activity android:name=".NauplioActivity" />
-        <activity android:name=".GiannenaActivity"></activity>
+        <activity android:name=".GiannenaActivity"/>
     </application>
 
 </manifest>
