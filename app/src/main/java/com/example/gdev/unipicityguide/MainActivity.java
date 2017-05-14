@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     static final double NauLat = 22.8015531;
     static final double NauLong = 37.5673173;
     Button button;
-    Button button2;
     ToggleButton toggle;
     LocationManager locationManager;
 
@@ -37,24 +36,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
-            alertBuilder.setCancelable(true);
-            alertBuilder.setTitle("Permission is necessary");
-            alertBuilder.setMessage("Location permission is necessary to begin our travel ");
-            alertBuilder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-
-                public void onClick(DialogInterface dialog, int which) {
-                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 123);
-                }
-            });
-            AlertDialog alert = alertBuilder.create();
-            alert.show();
-        } else if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, MainActivity.this);
-        }
+        givemeperm();
         button = (Button) findViewById(R.id.button);
-        button2 = (Button) findViewById(R.id.button2);
         toggle = (ToggleButton) findViewById(R.id.toggBtn);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -170,7 +153,21 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     private void givemeperm() {
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 123);
+        if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
+            alertBuilder.setCancelable(true);
+            alertBuilder.setTitle("Permission is necessary");
+            alertBuilder.setMessage("Location permission is necessary to begin our travel ");
+            alertBuilder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int which) {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 123);
+                }
+            });
+            AlertDialog alert = alertBuilder.create();
+            alert.show();
+        } else if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, MainActivity.this);
+        }
     }
 }

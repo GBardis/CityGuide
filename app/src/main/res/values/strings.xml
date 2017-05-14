@@ -4,4 +4,7 @@
     <string name="go_to_maps">Go To Maps</string>
     <string name="stop_gps">Stop GPS</string>
     <string name="togglebutton">ToggleButton</string>
+    <string name="push_the_button_to_find_the_nearest_city">push the button to find the nearest city</string>
+    <string name="gps_on_off">GPS On /Off</string>
+    <string name="find_city">FInd City</string>
 </resources>
