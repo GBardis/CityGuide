@@ -21,10 +21,22 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".AthensActivity" />
-        <activity android:name=".ThessalonikiActivity" />
-        <activity android:name=".NauplioActivity" />
-        <activity android:name=".GiannenaActivity"/>
+        <activity android:name=".AthensActivity" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+        <activity android:name=".ThessalonikiActivity" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+        <activity android:name=".NauplioActivity" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+        <activity android:name=".GiannenaActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
     </application>
 
 </manifest>

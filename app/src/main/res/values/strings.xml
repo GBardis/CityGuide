@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">UnipiCityGuide</string>
     <string name="welcome_unipicityguide">Welcome UnipiCityGuide</string>
+    <string name="go_to_maps">Go To Maps</string>
+    <string name="stop_gps">Stop GPS</string>
+    <string name="togglebutton">ToggleButton</string>
 </resources>

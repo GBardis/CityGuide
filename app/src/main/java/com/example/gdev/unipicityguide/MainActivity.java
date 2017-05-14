@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -14,7 +13,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
@@ -27,12 +28,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     static final double NauLat = 22.8015531;
     static final double NauLong = 37.5673173;
     Button button;
+    Button button2;
+    ToggleButton toggle;
     LocationManager locationManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
             alertBuilder.setCancelable(true);
@@ -49,19 +53,37 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         } else if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, MainActivity.this);
         }
-        locationManager=(LocationManager)getSystemService(LOCATION_SERVICE);
         button = (Button) findViewById(R.id.button);
+        button2 = (Button) findViewById(R.id.button2);
+        toggle = (ToggleButton) findViewById(R.id.toggBtn);
+        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    stopUsingGPS();
+                } else {
+                    givemeperm();
+                }
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 givemeperm();
-                if (ActivityCompat.checkSelfPermission(MainActivity.this,Manifest.permission.ACCESS_FINE_LOCATION)
+                if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
                         == PackageManager.PERMISSION_GRANTED)
-                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0,0,MainActivity.this);
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, MainActivity.this);
             }
         });
-
     }
+
+    public void stopUsingGPS() {
+        if (locationManager != null) {
+            locationManager.removeUpdates(this);
+        } else {
+            givemeperm();
+        }
+    }
+
 
     private void gotoathens() {
         Intent intent = new Intent(this, AthensActivity.class);
@@ -87,11 +109,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         Toast.makeText(this, "Welcome To Nauplio", Toast.LENGTH_LONG).show();
     }
 
+    private void gotoMain() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        Toast.makeText(this, "EISTAI MAKRIA", Toast.LENGTH_LONG).show();
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, MainActivity.this);
-        }else{
+        } else {
             Toast.makeText(MainActivity.this, "Permission denied to access your location", Toast.LENGTH_SHORT).show();
         }
     }
@@ -122,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         else if (distanceInMetersNau < 10000)
             gotonauplio();
         else
-            Toast.makeText(this, "EISTAI MAKRIA", Toast.LENGTH_LONG).show();
+            gotoMain();
     }
 
 
