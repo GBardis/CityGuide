@@ -21,8 +21,8 @@ import android.widget.ToggleButton;
 public class MainActivity extends AppCompatActivity implements LocationListener {
     static final double AthLat = 23.7275388;
     static final double AthLong = 37.9838096;
-    static final double ThessLat = 22.9444191;
-    static final double ThessLong = 40.6400629;
+    static final double ThesLat = 22.9444191;
+    static final double ThesLong = 40.6400629;
     static final double GianLat = 20.8532503;
     static final double GianLong = 39.6666416;
     static final double NauLat = 22.8015531;
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         double lon = location.getLongitude();
 
         Location.distanceBetween(lat, lon, AthLat, AthLong, athDistance);
-        Location.distanceBetween(lat, lon, ThessLat, ThessLong, thessDistance);
+        Location.distanceBetween(lat, lon, ThesLat, ThesLong, thessDistance);
         Location.distanceBetween(lat, lon, GianLat, GianLong, gianDistance);
         Location.distanceBetween(lat, lon, NauLat, NauLong, nauDistance);
         float distanceInMetersath = athDistance[0];
