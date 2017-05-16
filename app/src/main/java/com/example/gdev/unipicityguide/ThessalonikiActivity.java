@@ -16,7 +16,7 @@ import android.widget.ViewSwitcher;
 public class ThessalonikiActivity extends AppCompatActivity {
     ImageSwitcher myImageSwitcher3;
     Button nextImageButton3;
-
+    MainActivity Mainactivity = new MainActivity();
     int imageSwitcherImages[] = {R.drawable.thessaloniki_1, R.drawable.thessaloniki_2};
 
     int switcherImage = imageSwitcherImages.length;
@@ -49,6 +49,10 @@ public class ThessalonikiActivity extends AppCompatActivity {
     public void browser2 (View view){
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/place/Θεσσαλονίκη,+Ελλάδα"));
         startActivity(browserIntent);
+    }
+    protected void onStop() {
+        Mainactivity.stopUsingGPS();
+        super.onStop();
     }
 
     public void nextImageButton3(View view) {

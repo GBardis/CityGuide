@@ -17,7 +17,7 @@ import android.widget.ViewSwitcher;
 public class GiannenaActivity extends AppCompatActivity {
     ImageSwitcher myImageSwitcher1;
     Button nextImageButton1;
-
+    MainActivity Mainactivity = new MainActivity();
     int imageSwitcherImages[] = {R.drawable.giannena_1, R.drawable.giannena};
 
     int switcherImage = imageSwitcherImages.length;
@@ -49,6 +49,11 @@ public class GiannenaActivity extends AppCompatActivity {
         myImageSwitcher1.setOutAnimation(animationOut);
         myImageSwitcher1.setInAnimation(animationIn);
     }
+    protected void onStop() {
+        Mainactivity.stopUsingGPS();
+        super.onStop();
+    }
+
     public void browser3 (View view){
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/place/Ιωάννινα,+Ελλάδα"));
         startActivity(browserIntent);

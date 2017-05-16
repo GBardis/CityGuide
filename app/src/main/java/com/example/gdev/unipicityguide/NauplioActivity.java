@@ -17,7 +17,7 @@ public class NauplioActivity extends AppCompatActivity {
 
     ImageSwitcher myImageSwitcher2;
     Button nextImageButton2;
-
+    MainActivity Mainactivity = new MainActivity();
     int imageSwitcherImages[] = {R.drawable.nauplio_1, R.drawable.nauplio};
 
     int switcherImage = imageSwitcherImages.length;
@@ -46,6 +46,10 @@ public class NauplioActivity extends AppCompatActivity {
 
         myImageSwitcher2.setOutAnimation(animationOut);
         myImageSwitcher2.setInAnimation(animationIn);
+    }
+    protected void onStop() {
+        Mainactivity.stopUsingGPS();
+        super.onStop();
     }
 
     public void browser5(View view) {

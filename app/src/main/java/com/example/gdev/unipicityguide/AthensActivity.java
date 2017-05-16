@@ -55,10 +55,6 @@ public class AthensActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    /*protected void onResume() {
-        Mainactivity.givemeperm1();
-        super.onResume();
-    }*/
 
     public void browser4(View view) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/place/Αθήνα,+Ελλάδα"));
