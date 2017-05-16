@@ -12,7 +12,7 @@
         android:id="@+id/textView9"
         android:layout_width="0dp"
         android:layout_height="117dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="36dp"
         android:layout_marginEnd="52dp"
         android:layout_marginStart="52dp"
         android:text="@string/_65_574_111_740"
@@ -55,7 +55,7 @@
         android:id="@+id/nextImageButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="39dp"
+        android:layout_marginBottom="13dp"
         android:onClick="nextImageButton1"
         android:text="@string/next"
         app:layout_constraintBottom_toTopOf="@+id/textView9"
@@ -67,8 +67,8 @@
 
     <ImageSwitcher
         android:id="@+id/imageSwitcher1"
-        android:layout_width="0dp"
-        android:layout_height="192dp"
+        android:layout_width="352dp"
+        android:layout_height="144dp"
         android:layout_marginBottom="58dp"
         android:layout_marginEnd="1dp"
         android:layout_marginStart="1dp"
@@ -80,6 +80,9 @@
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        tools:layout_constraintTop_creator="1"
+        tools:layout_editor_absoluteX="2dp"
+        app:layout_constraintVertical_bias="0.494"
+        tools:layout_editor_absoluteY="68dp" />
 
 </android.support.constraint.ConstraintLayout>

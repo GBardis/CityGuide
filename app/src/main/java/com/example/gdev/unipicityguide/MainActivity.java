@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     static final double GianLong = 39.6666416;
     static final double NauLat = 22.8015531;
     static final double NauLong = 37.5673173;
+    static LocationManager locationManager;
     Button button;
     ToggleButton toggle;
-    LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +67,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
     }
 
+    protected void onStop() {
+        stopUsingGPS();
+        super.onStop();
+    }
+
+    protected void onResume() {
+        if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED)
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, MainActivity.this);
+        super.onResume();
+    }
 
     private void gotoathens() {
         Intent intent = new Intent(this, AthensActivity.class);
@@ -96,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         Toast.makeText(this, "EISTAI MAKRIA", Toast.LENGTH_LONG).show();
+        stopUsingGPS();
     }
 
     @Override
@@ -135,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         else
             gotoMain();
     }
-
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {

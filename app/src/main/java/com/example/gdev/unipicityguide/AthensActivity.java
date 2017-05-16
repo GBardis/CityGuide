@@ -17,7 +17,7 @@ public class AthensActivity extends AppCompatActivity {
 
     ImageSwitcher myImageSwitcher;
     Button nextImageButton;
-
+    MainActivity Mainactivity = new MainActivity();
     int imageSwitcherImages[] = {R.drawable.parthenon, R.drawable.acropolis};
 
     int switcherImage = imageSwitcherImages.length;
@@ -49,7 +49,18 @@ public class AthensActivity extends AppCompatActivity {
         myImageSwitcher.setOutAnimation(animationOut);
         myImageSwitcher.setInAnimation(animationIn);
     }
-    public void browser4 (View view){
+
+    protected void onStop() {
+        Mainactivity.stopUsingGPS();
+        super.onStop();
+    }
+
+    /*protected void onResume() {
+        Mainactivity.givemeperm1();
+        super.onResume();
+    }*/
+
+    public void browser4(View view) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/place/Αθήνα,+Ελλάδα"));
         startActivity(browserIntent);
     }

@@ -65,7 +65,8 @@
         app:layout_constraintBottom_toTopOf="@+id/button5"
         app:layout_constraintLeft_toLeftOf="@+id/button5"
         tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1" />
+        tools:layout_constraintLeft_creator="1"
+        tools:ignore="RtlHardcoded" />
 
     <ImageSwitcher
         android:id="@+id/imageSwitcher"
