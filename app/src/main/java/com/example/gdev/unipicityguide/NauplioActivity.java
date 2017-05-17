@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -13,11 +12,10 @@ import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.ViewSwitcher;
 
-public class NauplioActivity extends AppCompatActivity {
+public class NauplioActivity extends MainActivity {
 
     ImageSwitcher myImageSwitcher2;
     Button nextImageButton2;
-    MainActivity Mainactivity = new MainActivity();
     int imageSwitcherImages[] = {R.drawable.nauplio_1, R.drawable.nauplio};
 
     int switcherImage = imageSwitcherImages.length;
@@ -46,10 +44,6 @@ public class NauplioActivity extends AppCompatActivity {
 
         myImageSwitcher2.setOutAnimation(animationOut);
         myImageSwitcher2.setInAnimation(animationIn);
-    }
-    protected void onStop() {
-        Mainactivity.stopUsingGPS();
-        super.onStop();
     }
 
     public void browser5(View view) {

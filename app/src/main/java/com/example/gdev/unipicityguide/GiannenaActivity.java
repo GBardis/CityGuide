@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -14,12 +13,10 @@ import android.widget.ImageView;
 import android.widget.ViewSwitcher;
 
 
-public class GiannenaActivity extends AppCompatActivity {
+public class GiannenaActivity extends MainActivity {
     ImageSwitcher myImageSwitcher1;
     Button nextImageButton1;
-    MainActivity Mainactivity = new MainActivity();
     int imageSwitcherImages[] = {R.drawable.giannena_1, R.drawable.giannena};
-
     int switcherImage = imageSwitcherImages.length;
     int counter = -1;
 
@@ -48,10 +45,6 @@ public class GiannenaActivity extends AppCompatActivity {
 
         myImageSwitcher1.setOutAnimation(animationOut);
         myImageSwitcher1.setInAnimation(animationIn);
-    }
-    protected void onStop() {
-        Mainactivity.stopUsingGPS();
-        super.onStop();
     }
 
     public void browser3 (View view){

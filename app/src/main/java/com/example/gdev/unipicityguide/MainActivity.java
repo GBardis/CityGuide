@@ -68,15 +68,21 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     protected void onStop() {
-        stopUsingGPS();
         super.onStop();
+        stopUsingGPS();
+
     }
 
+    protected void onPause() {
+        super.onPause();
+        stopUsingGPS();
+    }
     protected void onResume() {
+        super.onResume();
         if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED)
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, MainActivity.this);
-        super.onResume();
+
     }
 
     private void goToAthens() {
@@ -106,8 +112,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private void gotoMain() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        Toast.makeText(this, "EISTAI MAKRIA", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Too Far", Toast.LENGTH_LONG).show();
         stopUsingGPS();
+
     }
 
     @Override
@@ -155,16 +162,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     @Override
     public void onProviderEnabled(String provider) {
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, MainActivity.this);
     }
 
     @Override
     public void onProviderDisabled(String provider) {
 
-    }
-
-    public void givemeperm1() {
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, MainActivity.this);
     }
 
     public void giveMePerm() {

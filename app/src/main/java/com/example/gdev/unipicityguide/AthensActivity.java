@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -13,13 +12,11 @@ import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.ViewSwitcher;
 
-public class AthensActivity extends AppCompatActivity {
+public class AthensActivity extends MainActivity {
 
     ImageSwitcher myImageSwitcher;
     Button nextImageButton;
-    MainActivity Mainactivity = new MainActivity();
     int imageSwitcherImages[] = {R.drawable.parthenon, R.drawable.acropolis};
-
     int switcherImage = imageSwitcherImages.length;
     int counter = -1;
 
@@ -49,12 +46,6 @@ public class AthensActivity extends AppCompatActivity {
         myImageSwitcher.setOutAnimation(animationOut);
         myImageSwitcher.setInAnimation(animationIn);
     }
-
-    protected void onStop() {
-        Mainactivity.stopUsingGPS();
-        super.onStop();
-    }
-
 
     public void browser4(View view) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/place/Αθήνα,+Ελλάδα"));
